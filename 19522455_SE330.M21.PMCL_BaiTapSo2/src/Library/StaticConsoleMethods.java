@@ -8,6 +8,9 @@ import java.util.Scanner;
  */
 
 public class StaticConsoleMethods {
+    /**
+     * This static method to clear console screen, but it haven't worked yet
+     */
     public static void clearScreen() { // This didn't work
         try{
             String operatingSystem = System.getProperty("os.name"); //Check the current operating system
@@ -27,6 +30,9 @@ public class StaticConsoleMethods {
         }
     }
 
+    /**
+     * THis method is to stop screen to check the result printed on console
+     */
     public static void stop()
     {   // This function is currently redundant due to that clear screen didn't work
         Scanner sc = new Scanner(System.in);

@@ -12,6 +12,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String args[])
     {
+        /**
+         * While loop menu
+         */
         Scanner sc = new Scanner(System.in);
         int choice;
 
