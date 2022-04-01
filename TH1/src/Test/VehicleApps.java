@@ -132,7 +132,7 @@ public class VehicleApps {
        }
     }
 
-    public static void main(String[] args)
+    public static void testProgram()
     {
         List<Vehicle> vehicles = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
@@ -145,4 +145,9 @@ public class VehicleApps {
         while (choice != 0);
     }
 
+    public static void main(String[] args) {
+       IFileManipulation.printString();
+    }
 }
+
+

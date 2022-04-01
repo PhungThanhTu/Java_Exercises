@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Vehicle class, abstract parent for all vehicle
  */
-public abstract class Vehicle implements IMileageCalculator,IInsertAndPrint  {
+public abstract class Vehicle implements IMileageCalculator,IInsertAndPrint,IFileManipulation  {
     // data fields
     private String model;
     private String color;
@@ -176,6 +176,16 @@ public abstract class Vehicle implements IMileageCalculator,IInsertAndPrint  {
     @Override
     public void print() {
         System.out.println(this);
+    }
+
+    @Override
+    public void importDataFromStringArray(String[] input) {
+        this.setModel(input[1]);
+        this.setColor(input[2]);
+        this.setYear(Integer.parseInt(input[3]));
+        this.setNumWheels(Integer.parseInt(input[4]));
+        this.setPrice(Integer.parseInt(input[5]));
+        this.setWeight(Double.parseDouble(input[6]));
     }
 }
 

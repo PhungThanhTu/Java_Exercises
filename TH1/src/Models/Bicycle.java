@@ -53,4 +53,10 @@ public class Bicycle extends Vehicle{
         setSaddleSeatHeight(sc.nextDouble());
 
     }
+
+    @Override
+    public void importDataFromStringArray(String[] input) {
+        super.importDataFromStringArray(input);
+        setSaddleSeatHeight(Double.parseDouble(input[7]));
+    }
 }

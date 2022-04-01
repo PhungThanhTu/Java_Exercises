@@ -101,4 +101,11 @@ public class Bike extends Vehicle{
 
     }
 
+    @Override
+    public void importDataFromStringArray(String[] input) {
+        super.importDataFromStringArray(input);
+        this.setMileage(Double.parseDouble(input[7]));
+        this.setPlateNumber(input[8]);
+        this.setNumSeats(Integer.parseInt(input[9]));
+    }
 }

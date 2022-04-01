@@ -7,6 +7,7 @@ public class Truck extends Vehicle{
     private String plateNumber;
     private int numSeats;
     private int numDoors;
+    private int loadCapacity;
 
     //<editor-fold desc="Constructors">
     public Truck() {
@@ -59,6 +60,15 @@ public class Truck extends Vehicle{
     public void setNumDoors(int numDoors) {
         this.numDoors = numDoors;
     }
+
+    public int getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(int loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
+
     //</editor-fold>
 
 
@@ -72,7 +82,7 @@ public class Truck extends Vehicle{
     }
     @Override
     public String toString() {
-        return super.toString() + "";
+        return super.toString() + "Truck{LoadCapacity=" + loadCapacity + "}" ;
     }
 
     @Override
@@ -108,5 +118,14 @@ public class Truck extends Vehicle{
         while(valid == 0);
         System.out.println("Insert number of doors :");
         setNumDoors(sc.nextInt());
+    }
+
+    @Override
+    public void importDataFromStringArray(String[] input) {
+        super.importDataFromStringArray(input);
+        this.setMileage(Double.parseDouble(input[7]));
+        this.setPlateNumber(input[8]);
+        this.setLoadCapacity(Integer.parseInt(input[9]));
+
     }
 }

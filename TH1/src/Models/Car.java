@@ -2,11 +2,12 @@ package Models;
 
 import java.util.Scanner;
 
-public class Car extends Vehicle {
+public class Car extends Vehicle implements IFileManipulation {
 
     private double mileage;
     private int numSeats;
     private int numDoors;
+    private String plateNumber;
 
     //<editor-fold desc="Constructors">
     public Car() {
@@ -49,6 +50,15 @@ public class Car extends Vehicle {
     public void setNumDoors(int numDoors) {
         this.numDoors = numDoors;
     }
+
+    public String getPlateNumber() {
+        return plateNumber;
+    }
+
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
+    }
+
     //</editor-fold>
 
     @Override
@@ -80,6 +90,10 @@ public class Car extends Vehicle {
         System.out.println("Insert mileage :");
         setMileage(sc.nextDouble());
 
+        System.out.println("Insert plate number :");
+        setPlateNumber(sc.nextLine());
+
+
         int valid = 0;
         do {
             System.out.println("Insert number of seats :");
@@ -96,5 +110,14 @@ public class Car extends Vehicle {
         while(valid == 0);
         System.out.println("Insert number of doors :");
         setNumDoors(sc.nextInt());
+    }
+
+    @Override
+    public void importDataFromStringArray(String[] input) {
+        super.importDataFromStringArray(input);
+        this.setMileage(Double.parseDouble(input[7]));
+        this.setPlateNumber(input[8]);
+        this.setNumSeats(Integer.parseInt(input[9]));
+        this.setNumDoors(Integer.parseInt(input[10]));
     }
 }
