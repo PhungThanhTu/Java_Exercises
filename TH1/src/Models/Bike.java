@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Child of a vehicle
  */
-public class Bike extends Vehicle{
+public class Bike extends Vehicle implements IInstallmentPayable{
 
     double mileage;
     String plateNumber;
@@ -107,5 +107,10 @@ public class Bike extends Vehicle{
         this.setMileage(Double.parseDouble(input[7]));
         this.setPlateNumber(input[8]);
         this.setNumSeats(Integer.parseInt(input[9]));
+    }
+
+    @Override
+    public double postpaidPrice() {
+        return getYear() > 2000 ?0.7*getPrice() : 0.75 * getPrice();
     }
 }

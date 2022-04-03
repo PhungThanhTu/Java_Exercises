@@ -2,12 +2,14 @@ package Models;
 
 import java.util.Scanner;
 
-public class Truck extends Vehicle{
+public class Truck extends Vehicle implements  IRemoteControlable,IInstallmentPayable{
     private double mileage;
     private String plateNumber;
     private int numSeats;
     private int numDoors;
     private int loadCapacity;
+    private Television television;
+    private Player player;
 
     //<editor-fold desc="Constructors">
     public Truck() {
@@ -116,6 +118,22 @@ public class Truck extends Vehicle{
             }
         }
         while(valid == 0);
+
+        valid = 0;
+        do {
+            System.out.println("Insert load capacity :");
+            int loadCapacity = sc.nextInt();
+            if(loadCapacity >= 0)
+            {
+                setLoadCapacity(loadCapacity);
+                valid = 1;
+            }
+            else {
+                System.out.println("Invalid load capacity, please reenter");
+            }
+        }
+        while(valid == 0);
+
         System.out.println("Insert number of doors :");
         setNumDoors(sc.nextInt());
     }
@@ -127,5 +145,35 @@ public class Truck extends Vehicle{
         this.setPlateNumber(input[8]);
         this.setLoadCapacity(Integer.parseInt(input[9]));
 
+    }
+
+
+    @Override
+    public void Start() {
+        television.turnOn();
+        player.turnOn();
+    }
+
+    @Override
+    public void Stop() {
+        television.turnOff();
+        player.turnOff();
+    }
+
+    @Override
+    public void VolumeUp() {
+        television.volumeUp();
+        player.volumeUp();
+    }
+
+    @Override
+    public void VolumeDown() {
+        television.volumeDown();
+        player.volumeDown();
+    }
+
+    @Override
+    public double postpaidPrice() {
+        return getLoadCapacity() < 5000 ? 0.5*getPrice(): 0.4*getPrice();
     }
 }

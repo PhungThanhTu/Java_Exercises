@@ -2,12 +2,14 @@ package Models;
 
 import java.util.Scanner;
 
-public class Car extends Vehicle implements IFileManipulation {
+public class Car extends Vehicle implements IFileManipulation,IRemoteControlable,IInstallmentPayable {
 
     private double mileage;
     private int numSeats;
     private int numDoors;
     private String plateNumber;
+    private Player player;
+    private Television television;
 
     //<editor-fold desc="Constructors">
     public Car() {
@@ -108,8 +110,24 @@ public class Car extends Vehicle implements IFileManipulation {
             }
         }
         while(valid == 0);
-        System.out.println("Insert number of doors :");
-        setNumDoors(sc.nextInt());
+
+        valid = 0;
+        do {
+            System.out.println("Insert number of doors :");
+            int inputDoors = sc.nextInt();
+            if(inputDoors == 2 || inputDoors == 4)
+            {
+                setNumDoors(inputDoors);
+                valid = 1;
+            }
+            else {
+                System.out.println("Invalid number of doors, please reenter");
+            }
+        }
+        while(valid == 0);
+
+
+
     }
 
     @Override
@@ -119,5 +137,34 @@ public class Car extends Vehicle implements IFileManipulation {
         this.setPlateNumber(input[8]);
         this.setNumSeats(Integer.parseInt(input[9]));
         this.setNumDoors(Integer.parseInt(input[10]));
+    }
+
+    @Override
+    public void Start() {
+        television.turnOn();
+        player.turnOn();
+    }
+
+    @Override
+    public void Stop() {
+       television.turnOff();
+       player.turnOff();
+    }
+
+    @Override
+    public void VolumeUp() {
+        television.volumeUp();
+        player.volumeUp();
+    }
+
+    @Override
+    public void VolumeDown() {
+        television.volumeDown();
+        player.volumeDown();
+    }
+
+    @Override
+    public double postpaidPrice() {
+        return getNumDoors() == 2 ? 0.6*getPrice() : 0.65*getPrice();
     }
 }
