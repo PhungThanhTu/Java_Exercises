@@ -21,4 +21,6 @@ public interface IInsertAndPrint {
         Matcher result = pat.matcher(input);
         return result.matches();
     }
+
+
 }
